@@ -5,9 +5,11 @@ import { useQuery } from 'react-query';
 import { getTripList } from '../api';
 import { TripList } from '../models';
 
-interface Props {}
+interface Props {
+  searchQuery: string;
+}
 
-function TableTrip({}: Props): ReactElement {
+function TableTrip({ searchQuery }: Props): ReactElement {
   const { status, error, data } = useQuery<TripList, Error>('getTrips', getTripList);
 
   if (status === 'loading') {
@@ -31,7 +33,6 @@ function TableTrip({}: Props): ReactElement {
         </thead>
         <tbody>
           {data?.map(({ id, departureStop, arrivalStop, departureTime, arrivalTime }) => {
-            console.log(id);
             return (
               <tr key={id}>
                 <td>{id}</td>

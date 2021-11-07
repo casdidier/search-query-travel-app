@@ -5,12 +5,13 @@ import { StopList } from '../models';
 
 interface Props {
   stopList?: StopList;
+  onChangeSelect: Function;
 }
 
 function Selector({ stopList }: Props): ReactElement {
   return (
     <div>
-      <Form.Select aria-label="Default select example">
+      <Form.Select onChange={(e) => props.onChangeSelect(e)}>
         <option>Select your start stop</option>
         {stopList?.map((stop, index) => {
           return (
