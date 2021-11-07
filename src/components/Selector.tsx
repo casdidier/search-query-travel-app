@@ -1,8 +1,10 @@
 import React, { ReactElement } from 'react';
 import { Form } from 'react-bootstrap';
 
+import { StopList } from '../models';
+
 interface Props {
-  stopList: readonly string[];
+  stopList?: StopList;
 }
 
 function Selector({ stopList }: Props): ReactElement {
@@ -10,7 +12,7 @@ function Selector({ stopList }: Props): ReactElement {
     <div>
       <Form.Select aria-label="Default select example">
         <option>Select your start stop</option>
-        {stopList.map((stop, index) => {
+        {stopList?.map((stop, index) => {
           return (
             <option value={stop} key={index}>
               {stop}
