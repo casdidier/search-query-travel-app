@@ -1,33 +1,22 @@
 import React, { ReactElement } from 'react';
 import Table from 'react-bootstrap/Table';
+import { useQuery } from 'react-query';
+
+import { getTripList } from '../api';
+import { TripList } from '../models';
 
 interface Props {}
 
-const TRIPS = [
-  {
-    id: 1,
-    departureStop: 'Bastille',
-    departureTime: '2022-01-01T15:23:00',
-    arrivalStop: 'Le quartier latin',
-    arrivalTime: '2022-01-01T16:05:00',
-  },
-  {
-    id: 2,
-    departureStop: 'Le quartier latin',
-    departureTime: '2022-01-01T20:31:00',
-    arrivalStop: 'Montmartre',
-    arrivalTime: '2022-01-01T20:57:00',
-  },
-  {
-    id: 3,
-    departureStop: 'Le quartier latin',
-    departureTime: '2022-01-01T14:04:00',
-    arrivalStop: 'Opéra',
-    arrivalTime: '2022-01-01T14:41:00',
-  },
-];
-
 function TableTrip({}: Props): ReactElement {
+  const { status, error, data } = useQuery<TripList, Error>('getTrips', getTripList);
+
+  if (status === 'loading') {
+    return <div>...</div>;
+  }
+  if (status === 'error') {
+    return <div>{error!.message}</div>;
+  }
+
   return (
     <div>
       <Table responsive>
@@ -41,14 +30,15 @@ function TableTrip({}: Props): ReactElement {
           </tr>
         </thead>
         <tbody>
-          {TRIPS.map((trip) => {
+          {data?.map(({ id, departureStop, arrivalStop, departureTime, arrivalTime }) => {
+            console.log(id);
             return (
-              <tr key={trip.id}>
-                <td>{trip.id}</td>
-                <td>{trip.departureStop}</td>
-                <td>{trip.departureTime}</td>
-                <td>{trip.arrivalStop}</td>
-                <td>{trip.arrivalTime}</td>
+              <tr key={id}>
+                <td>{id}</td>
+                <td>{departureStop}</td>
+                <td>{departureTime}</td>
+                <td>{arrivalStop}</td>
+                <td>{arrivalTime}</td>
               </tr>
             );
           })}
