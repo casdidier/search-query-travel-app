@@ -7,9 +7,10 @@ import { TripList } from '../models';
 
 interface Props {
   searchQuery: string;
+  tripsBySearch: TripList;
 }
 
-function TableTrip({ searchQuery }: Props): ReactElement {
+function TableTrip({ searchQuery, tripsBySearch }: Props): ReactElement {
   const { status, error, data } = useQuery<TripList, Error>('getTrips', getTripList);
 
   if (status === 'loading') {
@@ -18,6 +19,8 @@ function TableTrip({ searchQuery }: Props): ReactElement {
   if (status === 'error') {
     return <div>{error!.message}</div>;
   }
+
+  let trips = searchQuery !== 'Select your start stop' ? tripsBySearch : data;
 
   return (
     <div>
@@ -32,17 +35,19 @@ function TableTrip({ searchQuery }: Props): ReactElement {
           </tr>
         </thead>
         <tbody>
-          {data?.map(({ id, departureStop, arrivalStop, departureTime, arrivalTime }) => {
-            return (
-              <tr key={id}>
-                <td>{id}</td>
-                <td>{departureStop}</td>
-                <td>{departureTime}</td>
-                <td>{arrivalStop}</td>
-                <td>{arrivalTime}</td>
-              </tr>
-            );
-          })}
+          {trips?.map(
+            ({ id, departureStop, arrivalStop, departureTime, arrivalTime }) => {
+              return (
+                <tr key={id}>
+                  <td>{id}</td>
+                  <td>{departureStop}</td>
+                  <td>{departureTime}</td>
+                  <td>{arrivalStop}</td>
+                  <td>{arrivalTime}</td>
+                </tr>
+              );
+            },
+          )}
         </tbody>
       </Table>
     </div>

@@ -3,6 +3,7 @@ export async function fetchData(url: string) {
   if (!response.ok) {
     throw new Error('Problem fetching data');
   }
+
   return response.json();
 }
 
@@ -12,4 +13,10 @@ export async function getStopList() {
 
 export async function getTripList() {
   return fetchData(`https://6130d11c8066ca0017fdaa97.mockapi.io/trips`);
+}
+
+export async function getTripListBySearchQuery(searchQuery: string) {
+  return fetchData(
+    `https://6130d11c8066ca0017fdaa97.mockapi.io/trips?departureStop=${searchQuery}`,
+  );
 }
