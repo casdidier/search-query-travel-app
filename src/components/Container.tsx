@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import { getStopList } from '../api';
 import { StopList } from '../models';
 import Selector from './Selector';
-import TableJourney from './TableJourney';
+import TableTrip from './TableTrip';
 
 function Container(): ReactElement {
   const { status, error, data } = useQuery<StopList, Error>(
@@ -22,7 +22,7 @@ function Container(): ReactElement {
   return (
     <div>
       <Selector stopList={data} />
-      <TableJourney />
+      <TableTrip />
     </div>
   );
 }

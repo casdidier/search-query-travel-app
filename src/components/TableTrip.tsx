@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table';
 
 interface Props {}
 
-const JOURNEYS = [
+const TRIPS = [
   {
     id: 1,
     departureStop: 'Bastille',
@@ -27,7 +27,7 @@ const JOURNEYS = [
   },
 ];
 
-function TableJourney({}: Props): ReactElement {
+function TableTrip({}: Props): ReactElement {
   return (
     <div>
       <Table responsive>
@@ -41,14 +41,14 @@ function TableJourney({}: Props): ReactElement {
           </tr>
         </thead>
         <tbody>
-          {JOURNEYS.map((journey) => {
+          {TRIPS.map((trip) => {
             return (
-              <tr key={journey.id}>
-                <td>{journey.id}</td>
-                <td>{journey.departureStop}</td>
-                <td>{journey.departureTime}</td>
-                <td>{journey.arrivalStop}</td>
-                <td>{journey.arrivalTime}</td>
+              <tr key={trip.id}>
+                <td>{trip.id}</td>
+                <td>{trip.departureStop}</td>
+                <td>{trip.departureTime}</td>
+                <td>{trip.arrivalStop}</td>
+                <td>{trip.arrivalTime}</td>
               </tr>
             );
           })}
@@ -58,4 +58,4 @@ function TableJourney({}: Props): ReactElement {
   );
 }
 
-export default TableJourney;
+export default TableTrip;
