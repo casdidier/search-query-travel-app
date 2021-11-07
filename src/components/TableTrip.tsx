@@ -8,10 +8,11 @@ import { TripList } from '../models';
 interface Props {
   searchQuery: string;
   tripsBySearch: TripList;
+  onChangeBook: Function;
 }
 
-function TableTrip({ searchQuery, tripsBySearch }: Props): ReactElement {
-  const { status, error, data } = useQuery<TripList, Error>('getTrips', getTripList);
+function TableTrip({ searchQuery, tripsBySearch, onChangeBook }: Props): ReactElement {
+  const { status, error, data } = useQuery<TripList, Error>('tripList', getTripList);
 
   if (status === 'loading') {
     return <div>...</div>;
@@ -44,6 +45,9 @@ function TableTrip({ searchQuery, tripsBySearch }: Props): ReactElement {
                   <td>{departureTime}</td>
                   <td>{arrivalStop}</td>
                   <td>{arrivalTime}</td>
+                  <td>
+                    <button onClick={() => onChangeBook(id)}>Book</button>
+                  </td>
                 </tr>
               );
             },
