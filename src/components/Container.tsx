@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { useQuery } from 'react-query';
 
-import { getStopList, getTripList } from '../api';
+import { getStopList } from '../api';
 import { StopList } from '../models';
 import Selector from './Selector';
 import TableTrip from './TableTrip';
