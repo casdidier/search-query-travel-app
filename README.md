@@ -13,3 +13,20 @@ Clone the repo and run `yarn install`
 ## Start
 
 After the successfull installation of the packages: `yarn dev`
+
+## Utilisation et comportement de l’interface
+
+Utilisation et comportement de l’interface
+
+1. Le sélecteur d’arrêt de départ se remplit automatiquement avec la liste complète des
+   arrêts
+
+2. L’utilisateur sélectionne un arrêt de départ
+
+3. Le tableau de tous les trajets correspondant à l’arrêt de départ s’affiche avec les
+   dates et heures de départ et d’arrivée formatées pour une lecture humaine
+
+4. L’utilisateur clique sur le bouton de réservation du trajet de son choix
+
+5. Une requête de réservation est envoyée sur l’API et un message de confirmation de
+   la réservation est affiché à l’utilisateur si la réservation a réussi.
