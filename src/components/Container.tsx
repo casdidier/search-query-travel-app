@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 import { getStopList } from '../api';
 import { StopList } from '../models';
 import Selector from './Selector';
+import TableJourney from './TableJourney';
 
 function Container(): ReactElement {
   const { status, error, data } = useQuery<StopList, Error>(
@@ -18,11 +19,10 @@ function Container(): ReactElement {
     return <div>{error!.message}</div>;
   }
 
-  console.log(data);
-
   return (
     <div>
       <Selector stopList={data} />
+      <TableJourney />
     </div>
   );
 }

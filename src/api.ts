@@ -4,6 +4,5 @@ export async function getStopList() {
     throw new Error('Problem fetching data');
   }
   const res = await response.json();
-  console.log(res);
   return res;
 }
