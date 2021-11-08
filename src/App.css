@@ -37,6 +37,8 @@ p {
 .button-book:hover {
   background-color: #4caf50;
   color: white;
+  box-shadow: 0 37px 20px -20px rgba(0, 0, 0, 0.2);
+  transform: translate(0, -1px);
 }
 
 .flex-center {
