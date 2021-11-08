@@ -11,7 +11,7 @@ interface Props {
 function Selector({ stopList, onChangeSelect }: Props): ReactElement {
   return (
     <div>
-      <Form.Select onChange={(e) => onChangeSelect(e)}>
+      <Form.Select className="selector" onChange={(e) => onChangeSelect(e)}>
         <option>Select your start stop</option>
         {stopList?.map((stop, index) => {
           return (

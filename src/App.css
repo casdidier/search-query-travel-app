@@ -28,6 +28,7 @@ p {
   display: inline-block;
   font-size: 12px;
   border-radius: 10%;
+  cursor: pointer;
 }
 
 .button-book {
@@ -39,6 +40,14 @@ p {
   color: white;
   box-shadow: 0 37px 20px -20px rgba(0, 0, 0, 0.2);
   transform: translate(0, -1px);
+}
+
+.selector {
+  width: 300px;
+  height: 30px;
+  border-width: 2px;
+  background-color: blanchedalmond;
+  cursor: pointer;
 }
 
 .flex-center {
