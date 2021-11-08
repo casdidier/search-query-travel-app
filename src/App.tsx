@@ -2,12 +2,12 @@ import './App.css';
 
 import React from 'react';
 
-import Container from './components/Container';
+import HomeContainer from './components/HomeContainer';
 
 function App() {
   return (
     <div className="App">
-      <Container />
+      <HomeContainer />
     </div>
   );
 }

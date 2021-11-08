@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import Table from 'react-bootstrap/Table';
+import { Button, Container, Table } from 'react-bootstrap';
 import { useQuery } from 'react-query';
 
 import { getTripList } from '../api';
@@ -14,6 +14,11 @@ interface Props {
 function TableTrip({ searchQuery, tripsBySearch, onChangeBook }: Props): ReactElement {
   const { status, error, data } = useQuery<TripList, Error>('tripList', getTripList);
 
+  const bookTrip = (id) => {
+    window.alert('Your trip has just been just booked');
+    onChangeBook(id);
+  };
+
   if (status === 'loading') {
     return <div>...</div>;
   }
@@ -25,35 +30,45 @@ function TableTrip({ searchQuery, tripsBySearch, onChangeBook }: Props): ReactEl
 
   return (
     <div>
-      <Table responsive>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th key={1}>departureStop</th>
-            <th key={2}>departureTime</th>
-            <th key={3}>arrivalStop</th>
-            <th key={4}>arrivalTime</th>
-          </tr>
-        </thead>
-        <tbody>
-          {trips?.map(
-            ({ id, departureStop, arrivalStop, departureTime, arrivalTime }) => {
-              return (
-                <tr key={id}>
-                  <td>{id}</td>
-                  <td>{departureStop}</td>
-                  <td>{departureTime}</td>
-                  <td>{arrivalStop}</td>
-                  <td>{arrivalTime}</td>
-                  <td>
-                    <button onClick={() => onChangeBook(id)}>Book</button>
-                  </td>
-                </tr>
-              );
-            },
-          )}
-        </tbody>
-      </Table>
+      <Container>
+        <Table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th key={1}>Departure Stop</th>
+              <th key={2}>Departure Time</th>
+              <th key={3}>Arrival Stop</th>
+              <th key={4}>Arrival Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            {trips?.map(
+              ({ id, departureStop, arrivalStop, departureTime, arrivalTime }) => {
+                const humanDepartureTime = new Date(departureTime).toUTCString();
+                const humanArrivalTime = new Date(arrivalTime).toUTCString();
+
+                return (
+                  <tr key={id}>
+                    <td>{id}</td>
+                    <td>{departureStop}</td>
+                    <td>{humanDepartureTime}</td>
+                    <td>{arrivalStop}</td>
+                    <td>{humanArrivalTime}</td>
+                    <Button
+                      onClick={() => {
+                        window.confirm('Do you confirm you want to book this trip?')
+                          ? bookTrip(id)
+                          : console.log('nothing happens');
+                      }}>
+                      Book
+                    </Button>
+                  </tr>
+                );
+              },
+            )}
+          </tbody>
+        </Table>
+      </Container>
     </div>
   );
 }

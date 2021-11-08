@@ -1,4 +1,5 @@
 import React, { ReactElement, useState } from 'react';
+import { Button, Col, Container, Row, Table, Toast } from 'react-bootstrap';
 import { useQuery } from 'react-query';
 
 import { bookTripByID, getStopList, getTripListBySearchQuery } from '../api';
@@ -6,7 +7,7 @@ import { StopList } from '../models';
 import Selector from './Selector';
 import TableTrip from './TableTrip';
 
-function Container(): ReactElement {
+function HomeContainer(): ReactElement {
   const { status, error, data } = useQuery<StopList, Error>('stopList', getStopList);
   const [stopQuery, setStopQuery] = useState('Select your start stop');
   const [tripId, setTripId] = useState(null);
@@ -45,15 +46,15 @@ function Container(): ReactElement {
   }
 
   return (
-    <div>
+    <Container className="flex-center">
       <Selector stopList={data} onChangeSelect={onChangeSelect} />
       <TableTrip
         searchQuery={stopQuery}
         tripsBySearch={tripsBySearch}
         onChangeBook={onChangeBook}
       />
-    </div>
+    </Container>
   );
 }
 
-export default Container;
+export default HomeContainer;
