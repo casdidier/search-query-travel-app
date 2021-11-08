@@ -55,6 +55,7 @@ function TableTrip({ searchQuery, tripsBySearch, onChangeBook }: Props): ReactEl
                     <td>{arrivalStop}</td>
                     <td>{humanArrivalTime}</td>
                     <Button
+                      className="button-book"
                       onClick={() => {
                         window.confirm('Do you confirm you want to book this trip?')
                           ? bookTrip(id)

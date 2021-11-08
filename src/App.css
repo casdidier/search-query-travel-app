@@ -1,6 +1,6 @@
 :root {
-  --primay: black;
-  --bg-primay: white;
+  --primary: black;
+  --bg-primary: white;
 
   --link: #2a0b0b;
 }
@@ -18,13 +18,24 @@ p {
   font-size: 0.9rem;
 }
 
-button {
-  outline: none;
+.button-book {
+  background-color: #4caf50;
   border: none;
-  border-radius: 8px;
-  padding: 10px 35px;
+  color: #001e1d;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  border-radius: 10%;
+}
 
-  background: #845ec2;
+.button-book {
+  transition-duration: 0.4s;
+}
+
+.button-book:hover {
+  background-color: #4caf50;
   color: white;
 }
 
