@@ -30,4 +30,3 @@ Utilisation et comportement de l’interface
 
 5. Une requête de réservation est envoyée sur l’API et un message de confirmation de
    la réservation est affiché à l’utilisateur si la réservation a réussi.
-# compare-text-app
