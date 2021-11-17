@@ -6,7 +6,13 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 
 import App from './App';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: Infinity,
+    },
+  },
+});
 
 ReactDOM.render(
   <React.StrictMode>

@@ -20,15 +20,11 @@ function HomeContainer(): ReactElement {
     },
   );
 
-  const { data: booking } = useQuery(
-    ['bookedTrip', stopQuery],
-    () => bookTripByID(tripId),
-    {
-      enabled: Boolean(tripId),
-    },
-  );
+  const dataBooking = useQuery(['bookedTrip', stopQuery], () => bookTripByID(tripId), {
+    enabled: Boolean(tripId),
+  });
 
-  console.log(booking);
+  console.log(dataBooking, tripId);
 
   const onChangeSelect = () => {
     setStopQuery(event?.target.value);
